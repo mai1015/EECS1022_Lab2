@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lab2</string>
+    <string name="app_name">EECS1022 W18 Lab 2: Tax Calculator</string>
     <string-array name="status">
         <item>Single</item>
         <item>Married</item>
