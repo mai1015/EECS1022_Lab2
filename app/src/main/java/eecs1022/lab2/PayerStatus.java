@@ -14,6 +14,14 @@ public enum PayerStatus {
     private final double tax1;
     private final double tax2;
     private final double tax3;
+    private final double fixtax1;
+    private final double fixtax2;
+    private final double fixtax3;
+
+    private static final double rate1 = 0.1;
+    private static final double rate2 = 0.15;
+    private static final double rate3 = 0.25;
+    private static final double rate4 = 0.3;
     //private final double tax4;
 
     PayerStatus(String t, double lv1, double lv2, double lv3) {
@@ -22,18 +30,23 @@ public enum PayerStatus {
         tax2 = lv2;
         tax3 = lv3;
         //tax4 = lv4;
+
+        // calculate fixed tax
+        fixtax1 = tax1 * rate1;
+        fixtax2 = tax2 * rate2;
+        fixtax3 = tax3 * rate3;
     }
 
     public double getRate(int level) {
         switch (level) {
             case 0:
-                return 0.1;
+                return rate1;
             case 1:
-                return 0.15;
+                return rate2;
             case 2:
-                return 0.25;
+                return rate3;
             default:
-                return 0.3;
+                return rate4;
         }
     }
 
@@ -46,6 +59,17 @@ public enum PayerStatus {
             return 2;
         }
         return 3;
+    }
+
+    public double getFixedTax(int level) {
+        switch (level) {
+            case 2:
+                return tax3;
+            case 1:
+                return tax2;
+            default:
+                return tax1;
+        }
     }
 
     public double getTaxCap(int level) {
