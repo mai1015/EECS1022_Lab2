@@ -21,9 +21,9 @@ public class TaxPayer {
     public double calculateTax() {
         int level = status.getLevel(income);
         double result = 0.0;
-        result += calculatePart(status.getTaxFloor(level), status.getTaxCap(level), status.getRate(level));
-        for (int i = (level-1); i >= 0; i--) {
-            result += status.getFixedTax(i);
+        for (int i = level; i >= 0; i--) {
+            result += level != i ? status.getFixedTax(i) :
+                    calculatePart(status.getTaxFloor(level), status.getTaxCap(level), status.getRate(level));
         }
         return result;
     }
