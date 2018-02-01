@@ -33,8 +33,8 @@ public enum PayerStatus {
 
         // calculate fixed tax
         fixtax1 = tax1 * rate1;
-        fixtax2 = tax2 * rate2;
-        fixtax3 = tax3 * rate3;
+        fixtax2 = (tax2 - tax1) * rate2;
+        fixtax3 = (tax3 - tax2) * rate3;
     }
 
     public double getRate(int level) {
@@ -64,11 +64,11 @@ public enum PayerStatus {
     public double getFixedTax(int level) {
         switch (level) {
             case 2:
-                return tax3;
+                return fixtax3;
             case 1:
-                return tax2;
+                return fixtax2;
             default:
-                return tax1;
+                return fixtax1;
         }
     }
 
