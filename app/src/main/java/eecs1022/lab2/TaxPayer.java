@@ -53,12 +53,12 @@ public class TaxPayer {
 
     @Override
     public String toString() {
-        String ret = String.format("%s, your tax due is %.2f \n" +
+        String ret = String.format("%s, your tax due is $%.2f \n" +
                         "Calculation is based on the scheme of %s Filing:\n",
                 name, calculateTax(), status.toString());
         int level = status.getLevel(income);
         for (int i = 0; i <= level; i++) {
-            ret = String.format("%sPart %s: %.2f\n", ret, convertNum(i),
+            ret = String.format("%sPart %s: $%.2f\n", ret, convertNum(i),
                     level != i ? status.getFixedTax(i) :
                             calculatePart(status.getTaxFloor(i), status.getTaxCap(i), status.getRate(i)));
         }
